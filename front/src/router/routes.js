@@ -7,6 +7,13 @@ const routes = [
     ]
   },
   {
+    path: '/task',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: 'dashboard', component: () => import('src/pages/BoardPage.vue') }
+    ]
+  },
+  {
     path: '/tuto',
     component: () => import('layouts/MainLayout.vue'),
     children: [
