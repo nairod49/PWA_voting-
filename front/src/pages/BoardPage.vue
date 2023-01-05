@@ -8,28 +8,46 @@
         <h2>Bonjour </h2>
     </div>
     <div v-for="(list, index) in list" :key="index">
-        <Task :titletasks="list"/>
+        <Task :titletasks="list.title" :idtask="list._id" />
     </div>
     <div class="bottom">
-        <input type="button" value="ajouter" @click="add" id="add">
+        <input type="button" value="ajouter" @click="toggleHidden" id="add">
+    </div>
+    <div v-if="visible">
+      <label for="name">Name</label>
+    <input
+      id="namelist"
+      v-model="namelist"
+      type="text"
+      name="nom de la list"
+    >
+    <input type="button" value="ajouter" @click="add($event, namelist)" id="add">
     </div>
 </div>
 </template>
 <script setup>
 // Syntax vue3 Composition API
 import Task from 'components/exemple/AppListe.vue'
-import { ref } from 'vue'
+import { ref, VueElement } from 'vue'
 import { getAllLists, addLists } from 'services/list'
 const list = ref([])
+const visible = ref(false)
+const namelist = ref(VueElement.namelist)
+function toggleHidden () {
+  visible.value = !visible.value
+}
 
-function add (event) {
+function add (event, name) {
   (async () => {
-    await addLists('test')
+    console.log(name)
+    await addLists({ title: name })
   })()
+  window.location.reload()
 };
 
 (async () => {
   const { data } = await getAllLists()
+  console.log(list)
   list.value = data
 })()
 
