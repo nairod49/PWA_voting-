@@ -14,6 +14,13 @@ const routes = [
     ]
   },
   {
+    path: '/vote',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: 'vote', component: () => import('src/pages/VotingPage.vue') }
+    ]
+  },
+  {
     path: '/tuto',
     component: () => import('layouts/MainLayout.vue'),
     children: [

@@ -55,6 +55,6 @@ export async function del (ctx) {
     await List.findByIdAndDelete(ctx.params.id)
     ctx.ok()
   } catch (error) {
-    ctx.badRequest({ message: e.message })
+    ctx.badRequest({ message: error.message })
   }
 }

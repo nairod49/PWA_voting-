@@ -2,7 +2,7 @@
 
 <div class="page">
     <div class="header">
-        <h4>Dashboard</h4>
+        <h4>Dashboards</h4>
     </div>
     <div class="titre">
         <h2>Bonjour </h2>
